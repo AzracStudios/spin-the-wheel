@@ -12,20 +12,19 @@ body {
 
 .bg {
   position: relative;
-  overflow:  hidden;
 }
 
 .cloud {
   position: absolute;
   width: 100vw;
-  left: 0;
-  top: 0;
-  animation: cloud 30s linear infinite;
+  left: 0px;
+  top: 0vw;
+  animation: clouds 300s linear infinite;
 }
 
-@keyframes cloud {
-  0%    { top: 0; }
-  100%  { top: -800%; }
+@keyframes clouds {
+  0%    { top: 0vw; }
+  100%  { top: -669.5vw; }
 }
 
 .wrapper {
