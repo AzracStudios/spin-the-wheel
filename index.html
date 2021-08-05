@@ -1,26 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Spin the wheel</title>
-    <link rel="stylesheet" href="./style.css" />
-    <script src="./app.js" defer></script>
-  </head>
-  <body>
-<!--     <div class="wrapper">
-      <button class="spin">Spin</button>
-      <div class="wheel">
-        <div class="easy"><p>Easy</p></div>
-        <div class="med"><p>Medium</p></div>
-        <div class="hard"><p>Hard</p></div>
-        <div class="crazy"><p>Crazy</p></div>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spin the wheel</title>
+  <link rel="stylesheet" href="./style.css" />
+  <script src="./app.js" defer></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="wrapper">
+    <button class="spin">Spin</button>
+    <div class="wheel">
+      <div class="easy">
+        <p>Easy</p>
       </div>
-      <div class="arrow"></div>
-    </div> -->
-    <div class="bg">
-      <img src="./assets/clouds.png" alt="background" class="cloud" />
+      <div class="med">
+        <p>Medium</p>
+      </div>
+      <div class="hard">
+        <p>Hard</p>
+      </div>
+      <div class="crazy">
+        <p>Crazy</p>
+      </div>
     </div>
-  </body>
+    <div class="arrow"></div>
+  </div>
+
+  <div class="bg">
+    <img src="./assets/clouds.png" alt="clouds" class="cloud">
+  </div>
+
+  <div class="quiz-modal hidden">
+    <div class="wrap">
+      <div class="modWrap">
+        <div class="modHead">
+          <p class="headCont">Easy</p>
+        </div>
+        <p class="dif content">Question</p>
+        <div class="options">
+          <button class="opt">Option 1</button>
+          <button class="opt">Option 2</button>
+          <button class="opt">Option 3</button>
+          <button class="opt">Option 4</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="news-modal hidden">
+    <div class="wrap">
+      <div class="modWrap">
+        <div class="modHead">
+          <p class="headCont news-cat">News Category</p>
+        </div>
+        <p class="news">News</p>
+        <button class="go">Continue</button>
+      </div>
+    </div>
+  </div>
+</body>
+
 </html>
