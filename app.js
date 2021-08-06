@@ -1,3 +1,17 @@
+//* INDEX
+//#region
+
+let i = 0;
+let eI = 0;
+let mI = 0;
+let hI = 0;
+let cI = 0;
+
+//#endregion
+
+//* WHEEL ROTATION ARRAYS
+//#region
+
 let rotOrder = [
   -3645, -7245, -9225, -11115, -12735, -14535, -16240, -18315, -19935, -21825,
   -23625, -25515,
@@ -17,6 +31,38 @@ let sequence = [
   "Hard",
   "Crazy",
 ];
+
+//#endregion
+
+//* VARIABLES
+//#region
+
+let canSpin = true;
+let gameOver = false;
+let currentDifficulty;
+let deg = rotOrder[i];
+let correctAnswer = "Option";
+
+//#endregion
+
+//* DOM REFERENCES
+//#region
+
+let spin = document.querySelector(".spin");
+let wheel = document.querySelector(".wheel");
+let quest = document.querySelector(".content");
+let newsText = document.querySelector(".news");
+let options = document.querySelectorAll(".opt");
+let newsContinue = document.querySelector(".go");
+let newsHead = document.querySelector(".news-cat");
+let questHead = document.querySelector(".headCont");
+let quizModal = document.querySelector(".quiz-modal");
+let newsModal = document.querySelector(".news-modal");
+
+//#endregion
+
+//* QUIZ QUESTIONS
+//#region
 
 let easyQuiz = [
   [
@@ -79,10 +125,10 @@ let hardQuiz = [
     "Chattisgarh",
     "Andhra Pradesh",
     "Telengana",
-    "Andra Pradesh",
+    "Andhra Pradesh",
   ],
   [
-    "When was Indian Space Research Organization?",
+    "When was Indian Space Research Organization founded?",
     "15 August 1969",
     "20 August 1969",
     "2 January 1970",
@@ -126,28 +172,10 @@ let crazyQuiz = [
   ],
 ];
 
-let i = 0;
-let gameOver = false;
-let currentDifficulty;
-let deg = rotOrder[i];
-let canSpin = true;
-let spin = document.querySelector(".spin");
-let wheel = document.querySelector(".wheel");
+//#endregion
 
-let quest = document.querySelector(".content");
-let options = document.querySelectorAll(".opt");
-let questHead = document.querySelector(".headCont");
-let quizModal = document.querySelector(".quiz-modal");
-
-let newsText = document.querySelector(".news");
-let newsContinue = document.querySelector(".go");
-let newsHead = document.querySelector(".news-cat");
-let newsModal = document.querySelector(".news-modal");
-
-let eI = 0;
-let mI = 0;
-let hI = 0;
-let cI = 0;
+//* WHEEL MECHANICS
+//#region
 
 function rotate() {
   if (gameOver == false) {
@@ -165,37 +193,43 @@ function rotate() {
   console.log(currentDifficulty);
 }
 
+//#endregion
+
+//* QUIZ MECHANICS
+//#region
+
 function loadQuiz() {
   if (currentDifficulty == "Easy" && eI < 3) {
     questHead.innerHTML = "Easy";
     quest.innerHTML = easyQuiz[eI][0];
-    console.log(eI);
     for (x = 1; x <= 4; x++) {
       options[x - 1].innerHTML = easyQuiz[eI][x];
     }
+    correctAnswer = easyQuiz[eI][5];
+    eI++;
   } else if (currentDifficulty == "Medium" && mI < 3) {
-    (questHead.innerHTML = "Medium"), (quest.innerHTML = mediumQuiz[mI][0]);
-
+    questHead.innerHTML = "Medium";
+    quest.innerHTML = mediumQuiz[mI][0];
     for (x = 1; x <= 4; x++) {
       options[x - 1].innerHTML = mediumQuiz[mI][x];
     }
-
+    correctAnswer = mediumQuiz[mI][5];
     mI++;
   } else if (currentDifficulty == "Hard" && hI < 3) {
-    (questHead.innerHTML = "Hard"), (quest.innerHTML = hardQuiz[hI][0]);
-
+    questHead.innerHTML = "Hard";
+    quest.innerHTML = hardQuiz[hI][0];
     for (x = 1; x <= 4; x++) {
       options[x - 1].innerHTML = hardQuiz[hI][x];
     }
-
+    correctAnswer = hardQuiz[hI][5]
     hI++;
   } else if (currentDifficulty == "Crazy" && cI < 3) {
-    (questHead.innerHTML = "Crazy"), (quest.innerHTML = crazyQuiz[cI][0]);
-
+    questHead.innerHTML = "Crazy";
+    quest.innerHTML = crazyQuiz[cI][0];
     for (x = 1; x <= 4; x++) {
       options[x - 1].innerHTML = crazyQuiz[cI][x];
     }
-
+    correctAnswer = crazyQuiz[cI][5]
     cI++;
   } else {
     endGame();
@@ -205,20 +239,16 @@ function loadQuiz() {
 }
 
 function startQuiz() {
-  if (currentDifficulty == "Easy") {
-    for (x = 0; x < options.length; x++) {
-      options[x].addEventListener("click", (e) => {
-        console.log(e.target.innerHTML);
-        console.log(easyQuiz[eI][5]);
-        if (e.target.innerHTML == easyQuiz[eI][5]) {
-          endQuiz(true);
-          console.log(eI);
-        } else if (e.target.innerHTML != easyQuiz[eI][5]) {
-          endQuiz(false);
-          console.log(eI);
-        }
-      });
-    }
+  for (x = 0; x < options.length; x++) {
+    options[x].addEventListener("click", (e) => {
+      if (e.target.innerHTML == correctAnswer) {
+        endQuiz(true);
+        console.log(eI);
+      } else if (e.target.innerHTML != correctAnswer) {
+        endQuiz(false);
+        console.log(eI);
+      }
+    });
   }
 }
 
@@ -227,12 +257,12 @@ function endQuiz(correct) {
     correct == true ? displayPositiveNews() : displayNegativeNews();
   quizModal.classList.remove("visible");
   quizModal.classList.add("hidden");
-  console.log(eI);
 }
 
-function endGame() {
-  gameOver = true;
-}
+//#endregion
+
+//* NEWS MECHANICS
+//#region
 
 function displayPositiveNews() {
   canSpin = true;
@@ -240,12 +270,6 @@ function displayPositiveNews() {
   newsModal.classList.add("visible");
   newsHead.innerHTML = "You were correct!";
   newsText.innerHTML = "Positive News";
-
-  if (currentDifficulty == "Easy") {
-    eI += 1;
-  }
-
-  console.log(eI);
 }
 
 function displayNegativeNews() {
@@ -255,6 +279,20 @@ function displayNegativeNews() {
   newsHead.innerHTML = "You were wrong :(";
   newsText.innerHTML = "Negative News";
 }
+
+//#endregion
+
+//* GAME STATE CONTROLS
+//#region
+
+function endGame() {
+  gameOver = true;
+}
+
+//#endregion
+
+//* EVENT LISTENERS
+//#region
 
 window.addEventListener("keydown", (e) => {
   if (e.code === "Enter" && canSpin == true) {
@@ -281,3 +319,5 @@ newsContinue.addEventListener("click", (e) => {
   newsModal.classList.remove("visible");
   newsModal.classList.add("hidden");
 });
+
+//#endregion
