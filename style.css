@@ -66,9 +66,9 @@ body {
   transform: translate(-50%, -50%);
 }
 
-.wrapper .arrow{
-  width: 0; 
-  height: 0; 
+.wrapper .arrow {
+  width: 0;
+  height: 0;
   border-left: 20px solid transparent;
   border-right: 20px solid transparent;
   border-bottom: 30px solid rgb(255, 255, 255);
@@ -78,7 +78,7 @@ body {
   transform: translate(-50%, 50%);
 }
 
-.spinCount{
+.spinCount {
   position: absolute;
   left: 50%;
   top: 95%;
@@ -117,7 +117,7 @@ body {
   height: 40vmax;
   border-radius: 100%;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.623);
-  transition: transform 7s ease-in-out;
+  transition: transform 2s ease-in-out;
 }
 
 .wrapper .wheel .easy,
@@ -279,10 +279,32 @@ body {
 
 .visible .modWrap .news {
   margin-top: 5%;
-  width: 100%;
+  width: 92%;
   margin-left: 5%;
   margin-top: 5%;
   font-size: 1.55vmax;
+}
+
+.visible .modWrap .text {
+  margin-top: 5%;
+  width: 90%;
+  margin-left: 5%;
+  margin-top: 5%;
+  font-size: 1.55vmax;
+}
+
+.end-modal .modWrap button {
+  width: 20%;
+  height: 12%;
+  margin-top: 5%;
+  margin-left: 5%;
+  outline: none;
+  border: none;
+  color: white;
+  background: #035dbe;
+  font-size: 1.45vmax;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 /* #endregion */
